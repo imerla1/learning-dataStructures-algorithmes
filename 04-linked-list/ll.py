@@ -5,11 +5,15 @@ class Node:
 
 class LinkedList:
     def __init__(self, value) -> None:
-        new_node = Node(value)
+        new_node = Node(value) # Initial node
         self.head = new_node
         self.tail = new_node
         self.length = 1
-
+    def print_list(self):
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
     def append(self, value):
         # create new node
         # add node to end
@@ -25,4 +29,3 @@ class LinkedList:
 
 if __name__ == "__main__":
     my_ll = LinkedList(4)
-    
