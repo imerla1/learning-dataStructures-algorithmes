@@ -111,9 +111,9 @@ class LinkedList:
         # insert node to specific place based on index
         if index < 0 or index > self.length:
             raise IndexError(f"Invalid Index")
-        if index == 0:
+        elif index == 0:
             self.prepend(value)
-        if index == self.length:
+        elif index == self.length:
             self.append(value)
         else:
             # add Node somewhere in the middle
@@ -123,7 +123,7 @@ class LinkedList:
             prev_node_before.next = new_node
             new_node.next = prev_node_after
             self.length += 1
-        return new_node
+            return new_node
 
     def remove_item_by_index(self, index):
         # remove Node in specific position
