@@ -5,7 +5,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self, value = None) -> None:
+    def __init__(self, value=None) -> None:
         new_node = Node(value)  # Initial node
         self.head = new_node
         self.tail = new_node
@@ -58,6 +58,24 @@ class LinkedList:
             self.length -= 1
             return temp
 
+    def pop_first(self):
+        # pop first item
+        if self.head.value is None:
+            # we don't have any item in ll
+            return False
+
+        if self.length == 1:
+            # we have only 1 node (head=tail) we can pop it and return
+            return_value = self.head.value
+            self.head.value = None
+            self.head.next = None
+            return return_value
+        else:
+            # we have more than 1 Node
+            temp_head = self.head
+            self.head = self.head.next
+        self.length -= 1
+        return temp_head
     def prepend(self, value):
         # create new node
         # add node to the beginning
@@ -73,6 +91,7 @@ class LinkedList:
             self.head = ll_node
             self.head.next = temp_head
         self.length += 1
+
     def insert(self, index, value):
         # create new node
         # insert node to specific place based on index
@@ -80,10 +99,11 @@ class LinkedList:
 
 
 if __name__ == "__main__":
+    from random import randint
     my_ll = LinkedList()
     my_ll.append(25)
     my_ll.append(76)
-    my_ll.append(26)
+    # my_ll.append(26)
     # my_ll.append(68)
     # x = my_ll.pop()
     # my_ll.print_list()
