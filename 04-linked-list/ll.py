@@ -100,11 +100,31 @@ class LinkedList:
         for _ in range(index):
             temp_node = temp_node.next
         return temp_node
+    def set_value(self, index, value):
+        # set new value for specific Node
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+
     def insert(self, index, value):
         # create new node
         # insert node to specific place based on index
-        ...
-
+        if index < 0 or index > self.length:
+            raise IndexError(f"Invalid Index")
+        if index == 0:
+            self.prepend(value)
+        if index == self.length:
+            self.append(value)
+        else:
+            # add Node somewhere in the middle
+            prev_node_before = self.get(index-1)
+            prev_node_after = self.get(index)
+            new_node = Node(value)
+            prev_node_before.next = new_node
+            new_node.next = prev_node_after
+        return new_node
 
 if __name__ == "__main__":
     my_ll = LinkedList()
