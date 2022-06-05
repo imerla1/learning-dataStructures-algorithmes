@@ -5,7 +5,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self, value) -> None:
+    def __init__(self, value = None) -> None:
         new_node = Node(value)  # Initial node
         self.head = new_node
         self.tail = new_node
@@ -36,7 +36,7 @@ class LinkedList:
 
     def pop(self):
         "remove last item from ll and return it"
-        if self.head is None:
+        if self.head.value is None:
             # we don't have any item in ll
             return False
         if self.length == 1:
@@ -61,8 +61,18 @@ class LinkedList:
     def prepend(self, value):
         # create new node
         # add node to the beginning
-        ...
-
+        # ------
+        ll_node = Node(value)
+        temp_head = self.head
+        if self.head.value is None:
+            # we don't have any item in ll
+            self.head = ll_node
+            self.tail = ll_node
+        else:
+            # we have more than 1 Node
+            self.head = ll_node
+            self.head.next = temp_head
+        self.length += 1
     def insert(self, index, value):
         # create new node
         # insert node to specific place based on index
@@ -70,10 +80,10 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    my_ll = LinkedList(None)
+    my_ll = LinkedList()
     my_ll.append(25)
     my_ll.append(76)
     my_ll.append(26)
-    my_ll.append(68)
-    x = my_ll.pop()
+    # my_ll.append(68)
+    # x = my_ll.pop()
     # my_ll.print_list()
