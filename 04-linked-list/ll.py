@@ -11,11 +11,7 @@ class LinkedList:
         self.tail = new_node
         self.length = 1
 
-    def print_list(self):
-        temp = self.head
-        while temp is not None:
-            print(temp.value)
-            temp = temp.next
+    
 
     def append(self, value):
         "create new node add node to the end"
@@ -92,6 +88,7 @@ class LinkedList:
             self.head = ll_node
             self.head.next = temp_head
         self.length += 1
+
     def get(self, index):
         # get node by index
         if index < 0 or index >= self.length:
@@ -100,6 +97,7 @@ class LinkedList:
         for _ in range(index):
             temp_node = temp_node.next
         return temp_node
+
     def set_value(self, index, value):
         # set new value for specific Node
         temp = self.get(index)
@@ -124,8 +122,34 @@ class LinkedList:
             new_node = Node(value)
             prev_node_before.next = new_node
             new_node.next = prev_node_after
+            self.length += 1
         return new_node
 
+    def remove_item_by_index(self, index):
+        # remove Node in specific position
+        if index < 0 or index >= self.length:
+            raise IndexError(f"Invalid Index")
+        elif index == 0:
+            print(f"Index=0")
+            self.pop_first()
+        elif index == self.length - 1:
+            print(f"index= {self.length - 1}")
+            self.pop()
+        else:
+            # remove Node somewhere in the middle
+            print("else statement")
+            node = self.get(index)
+            prev_node = self.get(index-1)
+            prev_node.next = node.next
+            self.length -= 1
+    def __repr__(self):
+        return_val = ""
+        temp = self.head
+        while temp is not None:
+            # print(temp.value)
+            return_val += str(temp.value) + "\n"
+            temp = temp.next
+        return return_val
 if __name__ == "__main__":
     my_ll = LinkedList()
     my_ll.append(25)
