@@ -76,6 +76,7 @@ class LinkedList:
             self.head = self.head.next
         self.length -= 1
         return temp_head
+
     def prepend(self, value):
         # create new node
         # add node to the beginning
@@ -91,7 +92,14 @@ class LinkedList:
             self.head = ll_node
             self.head.next = temp_head
         self.length += 1
-
+    def get(self, index):
+        # get node by index
+        if index < 0 or index >= self.length:
+            raise IndexError(f"Invalid Index")
+        temp_node = self.head
+        for _ in range(index):
+            temp_node = temp_node.next
+        return temp_node
     def insert(self, index, value):
         # create new node
         # insert node to specific place based on index
@@ -99,11 +107,10 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    from random import randint
     my_ll = LinkedList()
     my_ll.append(25)
     my_ll.append(76)
-    # my_ll.append(26)
-    # my_ll.append(68)
+    my_ll.append(26)
+    my_ll.append(68)
     # x = my_ll.pop()
     # my_ll.print_list()
