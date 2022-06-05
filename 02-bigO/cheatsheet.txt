@@ -1,0 +1,7 @@
+Ω - omega
+Θ - Theta
+Ο - Omicron
+
+best case is Omega
+average case is Theta
+worst case is Omicron
