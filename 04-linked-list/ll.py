@@ -11,8 +11,6 @@ class LinkedList:
         self.tail = new_node
         self.length = 1
 
-    
-
     def append(self, value):
         "create new node add node to the end"
         ll_node = Node(value)  # create new node
@@ -142,6 +140,15 @@ class LinkedList:
             prev_node = self.get(index-1)
             prev_node.next = node.next
             self.length -= 1
+
+    def reverse(self):
+        # reverse linked list
+        if self.head.value == None:
+            return None
+        else:
+            temp_head = self.head
+            self.tail = self.head
+            self.head = temp_head
     def __repr__(self):
         return_val = ""
         temp = self.head
@@ -150,6 +157,8 @@ class LinkedList:
             return_val += str(temp.value) + "\n"
             temp = temp.next
         return return_val
+
+
 if __name__ == "__main__":
     my_ll = LinkedList()
     my_ll.append(25)
