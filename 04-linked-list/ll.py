@@ -143,12 +143,19 @@ class LinkedList:
 
     def reverse(self):
         # reverse linked list
-        if self.head.value == None:
-            return None
-        else:
-            temp_head = self.head
-            self.tail = self.head
-            self.head = temp_head
+        curr_node = self.head
+        prev_node = None
+        next_node = None
+
+        while curr_node is not None:
+            next_node = curr_node.next
+            curr_node.next = prev_node
+            prev_node = curr_node
+            curr_node = next_node
+        
+        self.head = prev_node
+        self.tail = self.pop()
+
     def __repr__(self):
         return_val = ""
         temp = self.head
