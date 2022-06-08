@@ -1,3 +1,9 @@
+import time
+
+from rich.live import Live
+from rich.table import Table
+
+
 class Node:
     def __init__(self, value) -> None:
         self.value = value
@@ -78,6 +84,46 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
+    def display_nodes(self):
+        # pretty represent all nodes
+        table = Table()
+        table.add_column("Node ID")
+        table.add_column("Prev Node Value")
+        table.add_column("Value")
+        table.add_column("Next Node Value")
+
+        nodes = []
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            nodes.append(temp)
+            temp = temp.next
+
+        with Live(table, refresh_per_second=4):  # update 4 times a second to feel fluid
+            for node_id, node in enumerate(nodes):
+                try:
+                    node_prev_value = node.prev.value
+                except AttributeError:
+                     node_prev_value = None
+                try:
+                    node_value = node.value
+                except AttributeError:
+                     node_value = None
+                try:
+                    node_next_value = node.next.value
+                except AttributeError:
+                     node_next_value = None
+                table.add_row(
+                    f"{node_id}", str(node_prev_value), str(node_value), str(node_next_value)
+                )
+                time.sleep(0.2)
+
+
 if __name__ == "__main__":
     x = DoublyLinkedList(5)
     x.append(25)
+    x.append(25)
+    x.append(25)
+    x.append(25)
+
+    a = x.display_nodes()
