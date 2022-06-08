@@ -13,7 +13,7 @@ class Node:
 
 class DoublyLinkedList:
     def __init__(self, value=None) -> None:
-        initial_node = Node(value)
+        initial_node = Node(value) if value else None
         self.head = initial_node
         self.tail = initial_node
         if value is None:
@@ -35,7 +35,7 @@ class DoublyLinkedList:
     def append(self, value):
         # append new node at the end of the DLL
         new_node = Node(value)
-        if self.head.value is None:
+        if self.head is None:
             # we don't have any item in dll so
             # our new node will become head and tail
             self.head = new_node
@@ -104,10 +104,18 @@ class DoublyLinkedList:
             self.length -= 1
             return temp
 
-    def get(self, index):
+    def get(self, index, default_return_type=None):
         # get node by index
-        if index < 0 or index > self.length:
+        if self.length == 0:
+            return default_return_type
+        if index < 0 or index >= self.length:
             raise IndexError("Invalid Index")
+        else:
+            elem = self.head
+
+            for _ in range(index):
+                elem = self.head.next
+            return elem
 
     def display_nodes(self):
         # pretty represent all nodes
