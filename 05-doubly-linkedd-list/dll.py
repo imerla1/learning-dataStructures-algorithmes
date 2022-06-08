@@ -116,17 +116,17 @@ class DoublyLinkedList:
             elem = self.head
 
             for _ in range(index):
-                elem = self.head.next
+                elem = elem.next
+            print(elem.value)
             return elem
 
     def set_value(self, index, new_value):
         node = self.get(index)
-        return node
-        # if node:
-        #     node.value = new_value
-        #     return True
+        if node:
+            node.value = new_value
+            return True
 
-        # return False
+        return False
 
     def display_nodes(self):
         # pretty represent all nodes
@@ -171,3 +171,4 @@ if __name__ == "__main__":
     x.append(4)
 
     a = x.display_nodes()
+    b = x.get(4)
