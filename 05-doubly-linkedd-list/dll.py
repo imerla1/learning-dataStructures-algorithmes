@@ -37,6 +37,28 @@ class DoublyLinkedList:
            self.tail.prev = prev 
         self.length += 1
 
+    def pop(self):
+        # remove last element and return it.
+        if self.length == 0:
+            # our DLL is empty
+            return False
+        elif self.length == 1:
+            # we have only 1 item in DLL 
+            temp = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
 
+            return temp
+        else:
+            # we have more than 1 node in DLL
+            ret_value = self.tail
+            self.tail = ret_value.prev
+            self.tail.next = None
+            self.length -= 1
+
+            return ret_value
 if __name__ == "__main__":
     x = DoublyLinkedList(5)
+    x.append(25)
+    x.append(53)
