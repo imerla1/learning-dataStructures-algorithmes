@@ -1,3 +1,4 @@
+import re
 import time
 
 from rich.live import Live
@@ -13,7 +14,8 @@ class Node:
 
 class DoublyLinkedList:
     def __init__(self, value=None) -> None:
-        initial_node = Node(value) if value else None
+        initial_node = Node(0) if value == 0 else Node(
+            value) if value else None
         self.head = initial_node
         self.tail = initial_node
         if value is None:
@@ -117,6 +119,15 @@ class DoublyLinkedList:
                 elem = self.head.next
             return elem
 
+    def set_value(self, index, new_value):
+        node = self.get(index)
+        return node
+        # if node:
+        #     node.value = new_value
+        #     return True
+
+        # return False
+
     def display_nodes(self):
         # pretty represent all nodes
         table = Table()
@@ -153,10 +164,10 @@ class DoublyLinkedList:
 
 
 if __name__ == "__main__":
-    x = DoublyLinkedList(5)
-    x.append(25)
-    x.append(25)
-    x.append(25)
-    x.append(25)
+    x = DoublyLinkedList(0)
+    x.append(1)
+    x.append(2)
+    x.append(3)
+    x.append(4)
 
     a = x.display_nodes()
