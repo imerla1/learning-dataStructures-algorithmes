@@ -84,6 +84,31 @@ class DoublyLinkedList:
         self.length += 1
         return True
 
+    def pop_first(self):
+        # pop first Node
+        if self.length == 0:
+            # our DLL is empty
+            return False
+        elif self.length == 1:
+            # we have only 1 item in DLL
+            temp = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
+
+            return temp
+        else:
+            temp = self.head
+            self.head = self.head.next
+            self.head.prev = None
+            self.length -= 1
+            return temp
+
+    def get(self, index):
+        # get node by index
+        if index < 0 or index > self.length:
+            raise IndexError("Invalid Index")
+
     def display_nodes(self):
         # pretty represent all nodes
         table = Table()
@@ -104,19 +129,19 @@ class DoublyLinkedList:
                 try:
                     node_prev_value = node.prev.value
                 except AttributeError:
-                     node_prev_value = None
+                    node_prev_value = None
                 try:
                     node_value = node.value
                 except AttributeError:
-                     node_value = None
+                    node_value = None
                 try:
                     node_next_value = node.next.value
                 except AttributeError:
-                     node_next_value = None
+                    node_next_value = None
                 table.add_row(
-                    f"{node_id}", str(node_prev_value), str(node_value), str(node_next_value)
+                    f"{node_id}", str(node_prev_value), str(
+                        node_value), str(node_next_value)
                 )
-                time.sleep(0.2)
 
 
 if __name__ == "__main__":
