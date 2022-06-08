@@ -22,19 +22,23 @@ class DoublyLinkedList:
             ret += f"{str(temp.value)}\n"
             temp = temp.next
         return ret
+
+    def __len__(self):
+        return self.length
+
     def append(self, value):
         # append new node at the end of the DLL
         new_node = Node(value)
         if self.head.value is None:
             # we don't have any item in dll so
-            # our new node will become head and tail 
+            # our new node will become head and tail
             self.head = new_node
             self.tail = new_node
         else:
-           prev = self.tail
-           prev.next = new_node
-           self.tail = new_node
-           self.tail.prev = prev 
+            prev = self.tail
+            prev.next = new_node
+            self.tail = new_node
+            self.tail.prev = prev
         self.length += 1
 
     def pop(self):
@@ -43,7 +47,7 @@ class DoublyLinkedList:
             # our DLL is empty
             return False
         elif self.length == 1:
-            # we have only 1 item in DLL 
+            # we have only 1 item in DLL
             temp = self.head
             self.head = None
             self.tail = None
@@ -58,6 +62,8 @@ class DoublyLinkedList:
             self.length -= 1
 
             return ret_value
+
+
 if __name__ == "__main__":
     x = DoublyLinkedList(5)
     x.append(25)
