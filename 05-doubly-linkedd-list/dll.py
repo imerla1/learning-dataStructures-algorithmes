@@ -1,3 +1,4 @@
+from hashlib import new
 import re
 import time
 
@@ -127,6 +128,29 @@ class DoublyLinkedList:
             return True
 
         return False
+
+    def insert(self, index, value):
+        # insert new node into specifc position.
+        new_node = Node(value)
+        if index < 0 or index > self.length:
+            raise IndexError("Invalid Index")
+        elif index == 0:
+            # we insert new node at the beggining of the DLL
+            temp = self.head
+            self.head = new_node
+            self.head.next = temp
+            self.head.prev = None
+            temp.prev = new_node
+        else:
+            elem = self.head
+            for _ in range(index):
+
+                elem = elem.next
+            prev_node = self.get(index-1)
+            prev_node.next = new_node
+            new_node.next = elem
+            new_node.prev = prev_node
+        self.length += 1
 
     def display_nodes(self):
         # pretty represent all nodes
