@@ -168,6 +168,21 @@ class DoublyLinkedList:
 
             self.length -= 1
 
+    def reverse(self):
+        # reverse DLL
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        after = temp.next
+        before = None
+
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+
+
     def display_nodes(self):
         # pretty represent all nodes
         table = Table()
@@ -211,4 +226,4 @@ if __name__ == "__main__":
     x.append(4)
 
     a = x.display_nodes()
-    b = x.get(4)
+    b = x.reverse()
