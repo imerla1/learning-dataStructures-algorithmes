@@ -142,13 +142,31 @@ class DoublyLinkedList:
             new_node = Node(value)
             before = self.get(index-1)
             after = before.next
-    
+
             new_node.prev = before
             new_node.next = after
             before.next = new_node
             after.prev = new_node
 
+    def remove(self, index):
+        # remove node
+        if index < 0 or index >= self.length:
+            raise IndexError("Invalid Index")
+        elif self.length == 0:
+            # we don't have any node in DLL
+            return False
+        elif index == 0:
+            self.pop_first()
+        elif index == self.length - 1:
+            self.pop()
+        else:
+            node_to_remove = self.get(index)
+            before = node_to_remove.prev
+            after = node_to_remove.next
+            before.next = after
+            after.prev = before
 
+            self.length -= 1
 
     def display_nodes(self):
         # pretty represent all nodes
